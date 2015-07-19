@@ -1,8 +1,11 @@
-=bacinfo=
+bacinfo
+======
+
 Bacinfo is an information gathering tool for bacteria.
 
 
-==Planed features==
+Planed features
+---------------
 * database queries
   - wikipedia, microbewiki, ncbi, scholar, biocyc
 * text mining
