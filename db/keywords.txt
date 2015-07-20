@@ -205,7 +205,7 @@ Agglutination test
 HIV
 passive agglutination
 Agriculture
-antibiotics used in
+antibiotics 
 microbiology
 transgenic plants
 Agrobacterium
@@ -498,7 +498,6 @@ also speciﬁc compounds
 agricultural uses
 animal feed
 annual worldwide production and
-use
 anthrax treatment
 bioﬁlm
 broad-spectrum
@@ -5487,7 +5486,6 @@ Meningitis
 diagnosis
 epidemiology and pathology
 meningococcal
-other causes
 prevention and treatment
 Meningitis vaccine
 Meningococcal disease
@@ -6312,7 +6310,6 @@ detection
 electron ﬂow
 free-living aerobes
 free-living anaerobes
-genes used for evaluating
 genetics
 inhibition by oxygen
 legume symbiosis
@@ -6974,7 +6971,6 @@ Photorhabdus
 Photosynthesis
 accessory pigments
 anoxygenic
-genes used for evaluating
 carbon cycle
 electron ﬂow
 energy production

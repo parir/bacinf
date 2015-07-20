@@ -12,13 +12,15 @@ dtm <- DocumentTermMatrix(corpus)
 
 findFreqTerms(dtm, 50)
 
-termFrequency <- rowSums(as.matrix(dtm))
-termFrequency <- subset(termFrequency, termFrequency>=10)
-qplot(names(termFrequency), termFrequency, geom="bar", stat="identity") + coord_flip()
+termFrequency <- colSums(as.matrix(dtm))
+term_most <- tail(sort(termFrequency), 30)
+qplot(names(term_most), term_most, geom="bar", stat="identity") + coord_flip()
 
 findAssocs(dtm, "coli", 0.99)
 findAssocs(dtm, "bacteria", 0.90)
 
-inspect(DocumentTermMatrix(corpus,
-list(dictionary = c("bacteria", "metabolism", "aerob"))))
+keywords <- readLines("db/keywords.txt")
+key_hits <- inspect(DocumentTermMatrix(corpus, list(dictionary = keywords)))
+key_hits[,which(colSums(key_hits)>0)]
+
 
