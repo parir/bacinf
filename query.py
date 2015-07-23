@@ -1,8 +1,9 @@
 import mechanize
-import html2text
+#import html2text
 import re
 import codecs
 import os
+from bs4 import BeautifulSoup
 
 
 # check data dir
@@ -29,7 +30,46 @@ br.set_handle_robots(False)
 #
 
 org = "Escherichia coli"
+doc_count = 0
 print "Processing:", org
+
+
+#
+# 2) microbewiki
+#
+
+url = "http://microbewiki.kenyon.edu/index.php/MicrobeWiki"
+print "\tsearching:", url
+br.open(url)
+br.select_form(nr=0)
+br.form['search'] = org
+print br.form
+br.submit("go")
+#br.submit("fulltext") # there are two options!!
+
+html_doc = br.response().read()
+soup = BeautifulSoup(html_doc, 'html.parser')
+
+# kill all script and style elements
+for script in soup(["script", "style"]):
+    script.extract()    # rip it out
+txt = soup.get_text()
+
+file = codecs.open("dat/"+org+str(doc_count), "w", "utf-8")
+doc_count += 1
+file.write(txt)
+file.close()
+
+quit()
+
+h = html2text.HTML2Text()
+txt = h.handle(html.decode('utf8'))
+file = codecs.open("dat/"+org+str(doc_count), "w", "utf-8")
+doc_count += 1
+file.write(txt)
+file.close()
+
+
 
 
 #
@@ -65,6 +105,7 @@ if len(wiki_links) > 0:
         html = br.response().read()
         h = html2text.HTML2Text()
         txt = h.handle(html.decode('utf8'))
-        file = codecs.open("dat/"+org+str(i), "w", "utf-8")
+        file = codecs.open("dat/"+org+str(doc_count+i), "w", "utf-8")
+        doc_count += 1
         file.write(txt)
         file.close()
