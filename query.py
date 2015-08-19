@@ -1,5 +1,4 @@
 import mechanize
-#import html2text
 import re
 import codecs
 import os

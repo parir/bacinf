@@ -18,9 +18,10 @@ qplot(names(term_most), term_most, geom="bar", stat="identity") + coord_flip()
 
 findAssocs(dtm, "coli", 0.99)
 findAssocs(dtm, "bacteria", 0.90)
+findAssocs(dtm, names(term_most), rep(0.99, length(term_most)))
 
 keywords <- readLines("db/keywords.txt")
 key_hits <- inspect(DocumentTermMatrix(corpus, list(dictionary = keywords)))
-key_hits[,which(colSums(key_hits)>0)]
+key_hits[,which(colSums(key_hits)>1)]
 
 
