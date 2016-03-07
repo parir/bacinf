@@ -6,8 +6,9 @@ tag = "wikiped"
 
 wiki_ignore = ["Main page", "Contents", "Featured content", "Current events",
                "Random article", "Help", "About Wikipedia", "Community portal",
-               "Recent changes", "Upload file", "Special pages", "About Wikipedia"
-               "Disclaimers", "Help:Searching", "Disclaimers", ""]
+               "Recent changes", "Upload file", "Special pages",
+               "About Wikipedia", "Disclaimers", "Help:Searching",
+               "Disclaimers", ""]
 
 
 def open(br, org):
@@ -20,7 +21,7 @@ def open(br, org):
     soup = BeautifulSoup(html_doc, 'html.parser')
     # kill all script and style elements
     for script in soup(["script", "style"]):
-        script.extract()    # rip it out
+        script.extract()  # rip it out
     txt = soup.get_text()
 
     filename = org.replace(" ", "_") + "_" + tag
