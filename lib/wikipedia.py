@@ -1,7 +1,9 @@
+import urllib.request
+
 from bs4 import BeautifulSoup
 import codecs
 
-url = "http://en.wikipedia.org"
+BASE_URL = "https://en.wikipedia.org/wiki/"
 tag = "wikiped"
 
 wiki_ignore = ["Main page", "Contents", "Featured content", "Current events",
@@ -11,13 +13,9 @@ wiki_ignore = ["Main page", "Contents", "Featured content", "Current events",
                "Disclaimers", ""]
 
 
-def open(br, org):
-    br.open(url)
-    br.select_form(nr=0)
-    # print br.form
-    br.form['search'] = org
-    br.submit("go")
-    html_doc = br.response().read()
+def open(org):
+    response = urllib.request.urlopen(BASE_URL + org)
+    html_doc = response.read()
     soup = BeautifulSoup(html_doc, 'html.parser')
     # kill all script and style elements
     for script in soup(["script", "style"]):
@@ -40,7 +38,7 @@ def fulltext():
     wiki_links = []
     for l in br.links():
         if l.url[:6] == "/wiki/" and l.text not in wiki_ignore:
-            print "\t\t...got link:", l.text
+            print("\t\t...got link:", l.text)
             wiki_links.append(l)
 
     # follow first link

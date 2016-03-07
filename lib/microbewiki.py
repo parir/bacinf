@@ -1,19 +1,15 @@
+import urllib.request
+
 from bs4 import BeautifulSoup
 import codecs
 
-
+BASE_URL = "https://microbewiki.kenyon.edu/index.php/"
 tag = "mwiki"
-url = "http://microbewiki.kenyon.edu/index.php/MicrobeWiki"
 
 
-def open(br, org):
-    br.open(url)
-    br.select_form(nr=0)
-    br.form['search'] = org
-    br.submit("go")
-    # br.submit("fulltext") # there are two options!!
-
-    html_doc = br.response().read()
+def open(org):
+    response = urllib.request.urlopen(BASE_URL + org)
+    html_doc = response.read()
     soup = BeautifulSoup(html_doc, 'html.parser')
     # kill all script and style elements
     for script in soup(["script", "style"]):
