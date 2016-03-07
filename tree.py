@@ -6,11 +6,13 @@ ncbi = NCBITaxa()
 input = [l.rstrip("\n") for l in open("db/example_input", "r")]
 
 taxid = ncbi.get_name_translator(input)
-tree  = ncbi.get_topology(taxid.values())
+tree = ncbi.get_topology(taxid.values())
 
-#print tree.get_ascii(attributes=["sci_name", "rank", "taxid"])
+# print tree.get_ascii(attributes=["sci_name", "rank", "taxid"])
 
 # custom layout: adds "rank" on top of branches, and sci_name as tip names
+
+
 def my_layout(node):
     if getattr(node, "rank", None):
         rank_face = AttrFace("rank", fsize=7, fgcolor="indianred")
